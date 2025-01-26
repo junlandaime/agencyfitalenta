@@ -1,297 +1,107 @@
-<!--
-
-=========================================================
-* Notus Tailwind JS - v1.1.0 based on Tailwind Starter Kit by Creative Tim
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/notus-js
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md)
-
-* Tailwind Starter Kit Page: https://www.creative-tim.com/learning-lab/tailwind-starter-kit/presentation
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
--->
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="shortcut icon" href="../../assets/img/favicon.ico" />
-    <link
-      rel="apple-touch-icon"
-      sizes="76x76"
-      href="../../assets/img/apple-icon.png"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ asset('adminset/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}"
-    />
-    {{-- <link rel="stylesheet" href="../../assets/styles/tailwind.css" /> --}}
-    <!-- Scripts -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - {{ config('app.name') }}</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     @stack('styles')
-    <title>Dashboard | Notus Tailwind JS by Creative Tim</title>
-  </head>
-  <body class="text-blueGray-700 antialiased">
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">
-      @include('layouts.sidebar-admin')
-      <div class="relative md:ml-64 bg-blueGray-50">
-        
-        @include('layouts.header-admin')
-        @yield('content')
+</head>
+<body class="font-sans antialiased">
+    <div x-data="{ sidebarOpen: false }" class="min-h-screen bg-gray-100">
+        <!-- Mobile sidebar overlay -->
+        <div x-show="sidebarOpen" 
+             class="fixed inset-0 z-40 flex md:hidden" 
+             role="dialog" 
+             aria-modal="true">
+            <div x-show="sidebarOpen"
+                 x-transition:enter="transition-opacity ease-linear duration-300"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition-opacity ease-linear duration-300"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="fixed inset-0 bg-gray-600 bg-opacity-75"
+                 @click="sidebarOpen = false"
+                 aria-hidden="true"></div>
 
+            <div x-show="sidebarOpen"
+                 x-transition:enter="transition ease-in-out duration-300 transform"
+                 x-transition:enter-start="-translate-x-full"
+                 x-transition:enter-end="translate-x-0"
+                 x-transition:leave="transition ease-in-out duration-300 transform"
+                 x-transition:leave-start="translate-x-0"
+                 x-transition:leave-end="-translate-x-full"
+                 class="relative flex w-full max-w-xs flex-1 flex-col bg-white">
+                
+                <div class="absolute top-0 right-0 -mr-12 pt-2">
+                    <button type="button" 
+                            class="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                            @click="sidebarOpen = false">
+                        <span class="sr-only">Close sidebar</span>
+                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
 
-        
-      </div>
+                @include('layouts.admin.sidebar')
+            </div>
+        </div>
+
+        <!-- Static sidebar for desktop -->
+        <div class="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
+            @include('layouts.admin.sidebar')
+        </div>
+
+        <!-- Main content -->
+        <div class="flex flex-1 flex-col md:pl-64">
+            <!-- Top header -->
+            <div class="sticky top-0 z-10 bg-white pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
+                <button type="button" 
+                        class="-ml-0.5 -mt-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                        @click="sidebarOpen = true">
+                    <span class="sr-only">Open sidebar</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+
+            <main class="flex-1">
+                <div class="py-6">
+                    @if(session('success'))
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-4">
+                        <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-green-700">{{ session('success') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
+                    @yield('content')
+                </div>
+            </main>
+        </div>
     </div>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
-      charset="utf-8"
-    ></script>
-    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-    <script type="text/javascript">
-      /* Make dynamic date appear */
-      (function () {
-        if (document.getElementById("get-current-year")) {
-          document.getElementById("get-current-year").innerHTML =
-            new Date().getFullYear();
-        }
-      })();
-      /* Sidebar - Side navigation menu on mobile/responsive mode */
-      function toggleNavbar(collapseID) {
-        document.getElementById(collapseID).classList.toggle("hidden");
-        document.getElementById(collapseID).classList.toggle("bg-white");
-        document.getElementById(collapseID).classList.toggle("m-2");
-        document.getElementById(collapseID).classList.toggle("py-3");
-        document.getElementById(collapseID).classList.toggle("px-6");
-      }
-      /* Function for dropdowns */
-      function openDropdown(event, dropdownID) {
-        let element = event.target;
-        while (element.nodeName !== "A") {
-          element = element.parentNode;
-        }
-        Popper.createPopper(element, document.getElementById(dropdownID), {
-          placement: "bottom-start"
-        });
-        document.getElementById(dropdownID).classList.toggle("hidden");
-        document.getElementById(dropdownID).classList.toggle("block");
-      }
 
-      (function () {
-        /* Chart initialisations */
-        /* Line Chart */
-        var config = {
-          type: "line",
-          data: {
-            labels: [
-              "January",
-              "February",
-              "March",
-              "April",
-              "May",
-              "June",
-              "July"
-            ],
-            datasets: [
-              {
-                label: new Date().getFullYear(),
-                backgroundColor: "#4c51bf",
-                borderColor: "#4c51bf",
-                data: [65, 78, 66, 44, 56, 67, 75],
-                fill: false
-              },
-              {
-                label: new Date().getFullYear() - 1,
-                fill: false,
-                backgroundColor: "#fff",
-                borderColor: "#fff",
-                data: [40, 68, 86, 74, 56, 60, 87]
-              }
-            ]
-          },
-          options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            title: {
-              display: false,
-              text: "Sales Charts",
-              fontColor: "white"
-            },
-            legend: {
-              labels: {
-                fontColor: "white"
-              },
-              align: "end",
-              position: "bottom"
-            },
-            tooltips: {
-              mode: "index",
-              intersect: false
-            },
-            hover: {
-              mode: "nearest",
-              intersect: true
-            },
-            scales: {
-              xAxes: [
-                {
-                  ticks: {
-                    fontColor: "rgba(255,255,255,.7)"
-                  },
-                  display: true,
-                  scaleLabel: {
-                    display: false,
-                    labelString: "Month",
-                    fontColor: "white"
-                  },
-                  gridLines: {
-                    display: false,
-                    borderDash: [2],
-                    borderDashOffset: [2],
-                    color: "rgba(33, 37, 41, 0.3)",
-                    zeroLineColor: "rgba(0, 0, 0, 0)",
-                    zeroLineBorderDash: [2],
-                    zeroLineBorderDashOffset: [2]
-                  }
-                }
-              ],
-              yAxes: [
-                {
-                  ticks: {
-                    fontColor: "rgba(255,255,255,.7)"
-                  },
-                  display: true,
-                  scaleLabel: {
-                    display: false,
-                    labelString: "Value",
-                    fontColor: "white"
-                  },
-                  gridLines: {
-                    borderDash: [3],
-                    borderDashOffset: [3],
-                    drawBorder: false,
-                    color: "rgba(255, 255, 255, 0.15)",
-                    zeroLineColor: "rgba(33, 37, 41, 0)",
-                    zeroLineBorderDash: [2],
-                    zeroLineBorderDashOffset: [2]
-                  }
-                }
-              ]
-            }
-          }
-        };
-        var ctx = document.getElementById("line-chart").getContext("2d");
-        window.myLine = new Chart(ctx, config);
-
-        /* Bar Chart */
-        config = {
-          type: "bar",
-          data: {
-            labels: [
-              "January",
-              "February",
-              "March",
-              "April",
-              "May",
-              "June",
-              "July"
-            ],
-            datasets: [
-              {
-                label: new Date().getFullYear(),
-                backgroundColor: "#ed64a6",
-                borderColor: "#ed64a6",
-                data: [30, 78, 56, 34, 100, 45, 13],
-                fill: false,
-                barThickness: 8
-              },
-              {
-                label: new Date().getFullYear() - 1,
-                fill: false,
-                backgroundColor: "#4c51bf",
-                borderColor: "#4c51bf",
-                data: [27, 68, 86, 74, 10, 4, 87],
-                barThickness: 8
-              }
-            ]
-          },
-          options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            title: {
-              display: false,
-              text: "Orders Chart"
-            },
-            tooltips: {
-              mode: "index",
-              intersect: false
-            },
-            hover: {
-              mode: "nearest",
-              intersect: true
-            },
-            legend: {
-              labels: {
-                fontColor: "rgba(0,0,0,.4)"
-              },
-              align: "end",
-              position: "bottom"
-            },
-            scales: {
-              xAxes: [
-                {
-                  display: false,
-                  scaleLabel: {
-                    display: true,
-                    labelString: "Month"
-                  },
-                  gridLines: {
-                    borderDash: [2],
-                    borderDashOffset: [2],
-                    color: "rgba(33, 37, 41, 0.3)",
-                    zeroLineColor: "rgba(33, 37, 41, 0.3)",
-                    zeroLineBorderDash: [2],
-                    zeroLineBorderDashOffset: [2]
-                  }
-                }
-              ],
-              yAxes: [
-                {
-                  display: true,
-                  scaleLabel: {
-                    display: false,
-                    labelString: "Value"
-                  },
-                  gridLines: {
-                    borderDash: [2],
-                    drawBorder: false,
-                    borderDashOffset: [2],
-                    color: "rgba(33, 37, 41, 0.2)",
-                    zeroLineColor: "rgba(33, 37, 41, 0.15)",
-                    zeroLineBorderDash: [2],
-                    zeroLineBorderDashOffset: [2]
-                  }
-                }
-              ]
-            }
-          }
-        };
-        ctx = document.getElementById("bar-chart").getContext("2d");
-        window.myBar = new Chart(ctx, config);
-      })();
-    </script>
-  </body>
+    @stack('scripts')
+</body>
 </html>

@@ -1,737 +1,162 @@
 @extends('layouts.admin')
 
-@section('title', '')
-
-@push('skrip')
-    
-@endpush
-
 @section('content')
-<div class="p-6">
-    <h1 class="text-2xl font-bold mb-6 text-blueGray-700">Dashboard</h1>
-
-    <!-- Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <div class="bg-white p-4 rounded-lg shadow">
-            <h3 class="text-blueGray-400 uppercase font-bold text-xs mb-2">Total Mitra</h3>
-            <div class="flex justify-between items-center">
-                <span class="text-xl font-bold text-blueGray-700">42</span>
-                <span class="text-emerald-500">+15%</span>
-            </div>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow">
-            <h3 class="text-blueGray-400 uppercase font-bold text-xs mb-2">Produk Aktif</h3>
-            <div class="flex justify-between items-center">
-                <span class="text-xl font-bold text-blueGray-700">18</span>
-                <span class="text-orange-500">+5%</span>
-            </div>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow">
-            <h3 class="text-blueGray-400 uppercase font-bold text-xs mb-2">Artikel Terbit</h3>
-            <div class="flex justify-between items-center">
-                <span class="text-xl font-bold text-blueGray-700">76</span>
-                <span class="text-emerald-500">+22%</span>
-            </div>
-        </div>
-        <div class="bg-white p-4 rounded-lg shadow">
-            <h3 class="text-blueGray-400 uppercase font-bold text-xs mb-2">Pengunjung</h3>
-            <div class="flex justify-between items-center">
-                <span class="text-xl font-bold text-blueGray-700">5,362</span>
-                <span class="text-red-500">-2%</span>
-            </div>
-        </div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+        <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
     </div>
 
-    <!-- Recent Activities -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div class="bg-white rounded-lg shadow p-4">
-            <h2 class="text-lg font-bold mb-4 text-blueGray-700">Mitra Terbaru</h2>
-            <ul>
-                <li class="border-b py-2 flex justify-between items-center">
-                    <span>PT Inovasi Sejahtera</span>
-                    <span class="text-sm text-blueGray-500">2 hari yang lalu</span>
-                </li>
-                <li class="border-b py-2 flex justify-between items-center">
-                    <span>CV Digital Mandiri</span>
-                    <span class="text-sm text-blueGray-500">5 hari yang lalu</span>
-                </li>
-                <li class="py-2 flex justify-between items-center">
-                    <span>Koperasi Berkah</span>
-                    <span class="text-sm text-blueGray-500">1 minggu yang lalu</span>
-                </li>
-            </ul>
-        </div>
-
-        <div class="bg-white rounded-lg shadow p-4">
-            <h2 class="text-lg font-bold mb-4 text-blueGray-700">Artikel Terbaru</h2>
-            <ul>
-                <li class="border-b py-2 flex justify-between items-center">
-                    <span>Strategi Bisnis 2024</span>
-                    <span class="text-sm text-blueGray-500">1 hari yang lalu</span>
-                </li>
-                <li class="border-b py-2 flex justify-between items-center">
-                    <span>Kolaborasi Mitra Sukses</span>
-                    <span class="text-sm text-blueGray-500">3 hari yang lalu</span>
-                </li>
-                <li class="py-2 flex justify-between items-center">
-                    <span>Inovasi Talenta SDM</span>
-                    <span class="text-sm text-blueGray-500">1 minggu yang lalu</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-<div class="relative bg-blue-600 md:pt-32 pb-32 pt-12">
-    <div class="px-4 md:px-10 mx-auto w-full">
-      <div>
-        <!-- Card stats -->
-        <div class="flex flex-wrap">
-          <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-            <div
-              class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
-            >
-              <div class="flex-auto p-4">
-                <div class="flex flex-wrap">
-                  <div
-                    class="relative w-full pr-4 max-w-full flex-grow flex-1"
-                  >
-                    <h5
-                      class="text-blueGray-400 uppercase font-bold text-xs"
-                    >
-                      Traffic
-                    </h5>
-                    <span class="font-semibold text-xl text-blueGray-700">
-                      350,897
-                    </span>
-                  </div>
-                  <div class="relative w-auto pl-4 flex-initial">
-                    <div
-                      class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500"
-                    >
-                      <i class="far fa-chart-bar"></i>
-                    </div>
-                  </div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+        <!-- Stats -->
+        <div class="mt-8">
+            <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow sm:px-6 sm:pt-6">
+                    <dt>
+                        <div class="absolute rounded-md bg-blue-500 p-3">
+                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
+                            </svg>
+                        </div>
+                        <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Kategori</p>
+                    </dt>
+                    <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+                        <p class="text-2xl font-semibold text-gray-900">{{ $stats['categories'] }}</p>
+                    </dd>
                 </div>
-                <p class="text-sm text-blueGray-400 mt-4">
-                  <span class="text-emerald-500 mr-2">
-                    <i class="fas fa-arrow-up"></i> 3.48%
-                  </span>
-                  <span class="whitespace-nowrap">
-                    Since last month
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-            <div
-              class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
-            >
-              <div class="flex-auto p-4">
-                <div class="flex flex-wrap">
-                  <div
-                    class="relative w-full pr-4 max-w-full flex-grow flex-1"
-                  >
-                    <h5
-                      class="text-blueGray-400 uppercase font-bold text-xs"
-                    >
-                      New users
-                    </h5>
-                    <span class="font-semibold text-xl text-blueGray-700">
-                      2,356
-                    </span>
-                  </div>
-                  <div class="relative w-auto pl-4 flex-initial">
-                    <div
-                      class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-orange-500"
-                    >
-                      <i class="fas fa-chart-pie"></i>
-                    </div>
-                  </div>
-                </div>
-                <p class="text-sm text-blueGray-400 mt-4">
-                  <span class="text-red-500 mr-2">
-                    <i class="fas fa-arrow-down"></i> 3.48%
-                  </span>
-                  <span class="whitespace-nowrap"> Since last week </span>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-            <div
-              class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
-            >
-              <div class="flex-auto p-4">
-                <div class="flex flex-wrap">
-                  <div
-                    class="relative w-full pr-4 max-w-full flex-grow flex-1"
-                  >
-                    <h5
-                      class="text-blueGray-400 uppercase font-bold text-xs"
-                    >
-                      Sales
-                    </h5>
-                    <span class="font-semibold text-xl text-blueGray-700">
-                      924
-                    </span>
-                  </div>
-                  <div class="relative w-auto pl-4 flex-initial">
-                    <div
-                      class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-blue-500"
-                    >
-                      <i class="fas fa-users"></i>
-                    </div>
-                  </div>
-                </div>
-                <p class="text-sm text-blueGray-400 mt-4">
-                  <span class="text-orange-500 mr-2">
-                    <i class="fas fa-arrow-down"></i> 1.10%
-                  </span>
-                  <span class="whitespace-nowrap"> Since yesterday </span>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-            <div
-              class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
-            >
-              <div class="flex-auto p-4">
-                <div class="flex flex-wrap">
-                  <div
-                    class="relative w-full pr-4 max-w-full flex-grow flex-1"
-                  >
-                    <h5
-                      class="text-blueGray-400 uppercase font-bold text-xs"
-                    >
-                      Performance
-                    </h5>
-                    <span class="font-semibold text-xl text-blueGray-700">
-                      49,65%
-                    </span>
-                  </div>
-                  <div class="relative w-auto pl-4 flex-initial">
-                    <div
-                      class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-lightBlue-500"
-                    >
-                      <i class="fas fa-percent"></i>
-                    </div>
-                  </div>
-                </div>
-                <p class="text-sm text-blueGray-400 mt-4">
-                  <span class="text-emerald-500 mr-2">
-                    <i class="fas fa-arrow-up"></i> 12%
-                  </span>
-                  <span class="whitespace-nowrap">
-                    Since last month
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="px-4 md:px-10 mx-auto w-full -m-24">
-    <div class="flex flex-wrap">
-      <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-        <div
-          class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700"
-        >
-          <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-            <div class="flex flex-wrap items-center">
-              <div class="relative w-full max-w-full flex-grow flex-1">
-                <h6
-                  class="uppercase text-blueGray-100 mb-1 text-xs font-semibold"
-                >
-                  Overview
-                </h6>
-                <h2 class="text-white text-xl font-semibold">
-                  Sales value
-                </h2>
-              </div>
-            </div>
-          </div>
-          <div class="p-4 flex-auto">
-            <!-- Chart -->
-            <div class="relative h-350-px">
-              <canvas id="line-chart"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="w-full xl:w-4/12 px-4">
-        <div
-          class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
-        >
-          <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-            <div class="flex flex-wrap items-center">
-              <div class="relative w-full max-w-full flex-grow flex-1">
-                <h6
-                  class="uppercase text-blueGray-400 mb-1 text-xs font-semibold"
-                >
-                  Performance
-                </h6>
-                <h2 class="text-blueGray-700 text-xl font-semibold">
-                  Total orders
-                </h2>
-              </div>
-            </div>
-          </div>
-          <div class="p-4 flex-auto">
-            <!-- Chart -->
-            <div class="relative h-350-px">
-              <canvas id="bar-chart"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flex flex-wrap mt-4">
-      <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-        <div
-          class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
-        >
-          <div class="rounded-t mb-0 px-4 py-3 border-0">
-            <div class="flex flex-wrap items-center">
-              <div
-                class="relative w-full px-4 max-w-full flex-grow flex-1"
-              >
-                <h3 class="font-semibold text-base text-blueGray-700">
-                  Page visits
-                </h3>
-              </div>
-              <div
-                class="relative w-full px-4 max-w-full flex-grow flex-1 text-right"
-              >
-                <button
-                  class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button"
-                >
-                  See all
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="block w-full overflow-x-auto">
-            <!-- Projects table -->
-            <table
-              class="items-center w-full bg-transparent border-collapse"
-            >
-              <thead>
-                <tr>
-                  <th
-                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                  >
-                    Page name
-                  </th>
-                  <th
-                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                  >
-                    Visitors
-                  </th>
-                  <th
-                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                  >
-                    Unique users
-                  </th>
-                  <th
-                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                  >
-                    Bounce rate
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                  >
-                    /argon/
-                  </th>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    4,569
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    340
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    <i class="fas fa-arrow-up text-emerald-500 mr-4"></i>
-                    46,53%
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                  >
-                    /argon/index.html
-                  </th>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    3,985
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    319
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    <i class="fas fa-arrow-down text-orange-500 mr-4"></i>
-                    46,53%
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                  >
-                    /argon/charts.html
-                  </th>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    3,513
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    294
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    <i class="fas fa-arrow-down text-orange-500 mr-4"></i>
-                    36,49%
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                  >
-                    /argon/tables.html
-                  </th>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    2,050
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    147
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    <i class="fas fa-arrow-up text-emerald-500 mr-4"></i>
-                    50,87%
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                  >
-                    /argon/profile.html
-                  </th>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    1,795
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    190
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    <i class="fas fa-arrow-down text-red-500 mr-4"></i>
-                    46,53%
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="w-full xl:w-4/12 px-4">
-        <div
-          class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
-        >
-          <div class="rounded-t mb-0 px-4 py-3 border-0">
-            <div class="flex flex-wrap items-center">
-              <div
-                class="relative w-full px-4 max-w-full flex-grow flex-1"
-              >
-                <h3 class="font-semibold text-base text-blueGray-700">
-                  Social traffic
-                </h3>
-              </div>
-              <div
-                class="relative w-full px-4 max-w-full flex-grow flex-1 text-right"
-              >
-                <button
-                  class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button"
-                >
-                  See all
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="block w-full overflow-x-auto">
-            <!-- Projects table -->
-            <table
-              class="items-center w-full bg-transparent border-collapse"
-            >
-              <thead class="thead-light">
-                <tr>
-                  <th
-                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                  >
-                    Referral
-                  </th>
-                  <th
-                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-                  >
-                    Visitors
-                  </th>
-                  <th
-                    class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px"
-                  ></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                  >
-                    Facebook
-                  </th>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    1,480
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    <div class="flex items-center">
-                      <span class="mr-2">60%</span>
-                      <div class="relative w-full">
-                        <div
-                          class="overflow-hidden h-2 text-xs flex rounded bg-red-200"
-                        >
-                          <div
-                            style="width: 60%"
-                            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
-                          ></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                  >
-                    Facebook
-                  </th>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    5,480
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    <div class="flex items-center">
-                      <span class="mr-2">70%</span>
-                      <div class="relative w-full">
-                        <div
-                          class="overflow-hidden h-2 text-xs flex rounded bg-emerald-200"
-                        >
-                          <div
-                            style="width: 70%"
-                            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"
-                          ></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                  >
-                    Google
-                  </th>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    4,807
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    <div class="flex items-center">
-                      <span class="mr-2">80%</span>
-                      <div class="relative w-full">
-                        <div
-                          class="overflow-hidden h-2 text-xs flex rounded bg-purple-200"
-                        >
-                          <div
-                            style="width: 80%"
-                            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500"
-                          ></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                  >
-                    Instagram
-                  </th>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    3,678
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    <div class="flex items-center">
-                      <span class="mr-2">75%</span>
-                      <div class="relative w-full">
-                        <div
-                          class="overflow-hidden h-2 text-xs flex rounded bg-lightBlue-200"
-                        >
-                          <div
-                            style="width: 75%"
-                            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-lightBlue-500"
-                          ></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                  >
-                    twitter
-                  </th>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    2,645
-                  </td>
-                  <td
-                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                  >
-                    <div class="flex items-center">
-                      <span class="mr-2">30%</span>
-                      <div class="relative w-full">
-                        <div
-                          class="overflow-hidden h-2 text-xs flex rounded bg-orange-200"
-                        >
-                          <div
-                            style="width: 30%"
-                            class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500"
-                          ></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <footer class="block py-4">
-      <div class="container mx-auto px-4">
-        <hr class="mb-4 border-b-1 border-blueGray-200" />
-        <div
-          class="flex flex-wrap items-center md:justify-between justify-center"
-        >
-          <div class="w-full md:w-4/12 px-4">
-            <div
-              class="text-sm text-blueGray-500 font-semibold py-1 text-center md:text-left"
-            >
-              Copyright © <span id="get-current-year"></span>
-              <a
-                href="https://www.creative-tim.com?ref=njs-dashboard"
-                class="text-blueGray-500 hover:text-blueGray-700 text-sm font-semibold py-1"
-              >
-                Creative Tim
-              </a>
-            </div>
-          </div>
-          <div class="w-full md:w-8/12 px-4">
-            <ul
-              class="flex flex-wrap list-none md:justify-end justify-center"
-            >
-              <li>
-                <a
-                  href="https://www.creative-tim.com?ref=njs-dashboard"
-                  class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"
-                >
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.creative-tim.com/presentation?ref=njs-dashboard"
-                  class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"
-                >
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="http://blog.creative-tim.com?ref=njs-dashboard"
-                  class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"
-                >
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-dashboard"
-                  class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3"
-                >
-                  MIT License
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
 
+                <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow sm:px-6 sm:pt-6">
+                    <dt>
+                        <div class="absolute rounded-md bg-blue-500 p-3">
+                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+                            </svg>
+                        </div>
+                        <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Layanan</p>
+                    </dt>
+                    <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+                        <p class="text-2xl font-semibold text-gray-900">{{ $stats['services'] }}</p>
+                    </dd>
+                </div>
 
+                <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow sm:px-6 sm:pt-6">
+                    <dt>
+                        <div class="absolute rounded-md bg-blue-500 p-3">
+                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                            </svg>
+                        </div>
+                        <p class="ml-16 truncate text-sm font-medium text-gray-500">Total Produk</p>
+                    </dt>
+                    <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+                        <p class="text-2xl font-semibold text-gray-900">{{ $stats['products'] }}</p>
+                    </dd>
+                </div>
+
+                <div class="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow sm:px-6 sm:pt-6">
+                    <dt>
+                        <div class="absolute rounded-md bg-green-500 p-3">
+                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <p class="ml-16 truncate text-sm font-medium text-gray-500">Produk Aktif</p>
+                    </dt>
+                    <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+                        <p class="text-2xl font-semibold text-gray-900">{{ $stats['active_products'] }}</p>
+                    </dd>
+                </div>
+            </dl>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <!-- Latest Products -->
+            <div class="bg-white shadow rounded-lg">
+                <div class="p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Produk Terbaru</h3>
+                    <div class="mt-6 flow-root">
+                        <ul role="list" class="-my-5 divide-y divide-gray-200">
+                            @forelse($latest_products as $product)
+                                <li class="py-4">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-sm font-medium text-gray-900 truncate">
+                                                {{ $product->nama_produk }}
+                                            </p>
+                                            <p class="text-sm text-gray-500">
+                                                {{ $product->category->name }}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <a href="{{ route('admin.produk.edit', $product) }}"
+                                                class="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50">
+                                                Edit
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            @empty
+                                <li class="py-4">
+                                    <p class="text-sm text-gray-500 text-center">Belum ada produk</p>
+                                </li>
+                            @endforelse
+                        </ul>
+                    </div>
+                    <div class="mt-6">
+                        <a href="{{ route('admin.produk.index') }}"
+                            class="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                            Lihat Semua
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latest Services -->
+            <div class="bg-white shadow rounded-lg">
+                <div class="p-6">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Layanan Terbaru</h3>
+                    <div class="mt-6 flow-root">
+                        <ul role="list" class="-my-5 divide-y divide-gray-200">
+                            @forelse($latest_services as $service)
+                                <li class="py-4">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-sm font-medium text-gray-900 truncate">
+                                                {{ $service->nama_produk }}
+                                            </p>
+                                            <p class="text-sm text-gray-500">
+                                                {{-- {{ $service->category->name }} --}}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <a href="{{ route('admin.produk-layanan.edit', $service) }}"
+                                                class="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50">
+                                                Edit
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            @empty
+                                <li class="py-4">
+                                    <p class="text-sm text-gray-500 text-center">Belum ada layanan</p>
+                                </li>
+                            @endforelse
+                        </ul>
+                    </div>
+                    <div class="mt-6">
+                        <a href="{{ route('admin.produk-layanan.index') }}"
+                            class="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                            Lihat Semua
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
