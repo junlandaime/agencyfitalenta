@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
-use App\Models\ProdukCategory;
-use App\Models\ProdukLayanan;
 use App\Models\Produk;
+use App\Models\LandingPage;
+use App\Models\ProdukLayanan;
+use App\Models\ProdukCategory;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
     public function index()
     {
+
+        $landingPage = LandingPage::where('is_active', true)
+            ->with(['sections', 'features', 'stats'])
+            ->first();
+
         $categories = ProdukCategory::withCount('produks')
             ->where('is_active', true)
             ->orderBy('name')
@@ -30,6 +36,11 @@ class HomeController extends Controller
             ->take(8)
             ->get();
 
-        return view('front.home', compact('categories', 'services', 'products'));
+        return view('front.home', compact(
+            'landingPage',
+            'categories',
+            'services',
+            'products'
+        ));
     }
 }

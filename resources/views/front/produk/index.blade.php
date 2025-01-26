@@ -44,7 +44,9 @@
                                 class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
                                 <div class="p-6">
                                     <div class="flex items-center justify-between mb-4">
-                                        <h3 class="text-xl font-semibold text-gray-900">{{ $product->nama_produk }}</h3>
+                                        <a href="{{ route('front.produk.show', $product) }}">
+                                            <h3 class="text-xl font-semibold text-gray-900">{{ $product->nama_produk }}</h3>
+                                        </a>
                                         @if ($product->external_link)
                                             <a href="{{ $product->external_link }}" target="_blank"
                                                 class="text-blue-600 hover:text-blue-800">
@@ -65,14 +67,16 @@
                                         <div class="mb-4">
                                             <h4 class="text-sm font-medium text-gray-900 mb-2">Fitur:</h4>
                                             <ul class="space-y-2">
-                                                {{-- @foreach (array_slice($product->fitur, 0, 3) as $fitur)
-                                    <li class="flex items-start">
-                                        <svg class="h-5 w-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                        </svg>
-                                        <span class="text-sm text-gray-600">{{ $fitur }}</span>
-                                    </li>
-                                    @endforeach --}}
+                                                @foreach (array_slice($product->fitur, 0, 3) as $fitur)
+                                                    <li class="flex items-start">
+                                                        <svg class="h-5 w-5 text-blue-500 mr-2" fill="none"
+                                                            stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M5 13l4 4L19 7" />
+                                                        </svg>
+                                                        <span class="text-sm text-gray-600">{{ $fitur }}</span>
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     @endif

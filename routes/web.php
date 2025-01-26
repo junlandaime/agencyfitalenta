@@ -10,8 +10,10 @@ use App\Http\Controllers\Admin\ProdukLayananSectionController as AdminProdukLaya
 use App\Http\Controllers\Admin\ProdukController as AdminProdukController;
 use App\Http\Controllers\Front\ProdukController as FrontProdukController;
 use App\Http\Controllers\Admin\ProdukSectionController as AdminProdukSectionController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LandingPageController as AdminLandingPageController;
 
 
 // Route::get('/', function () {
@@ -73,7 +75,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     // Admin Routes
-    Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::middleware(['auth', 'role:owner'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('produk-category', AdminProdukCategoryController::class);
@@ -100,6 +102,34 @@ Route::middleware('auth')->group(function () {
             Route::put('sections/{section}', [AdminProdukSectionController::class, 'update'])->name('sections.update');
             Route::delete('sections/{section}', [AdminProdukSectionController::class, 'destroy'])->name('sections.destroy');
             Route::post('sections/reorder', [AdminProdukSectionController::class, 'reorder'])->name('sections.reorder');
+        });
+
+        Route::resource('users', AdminUserController::class);
+
+        // Landing Page Management
+        Route::get('/landing-pages/edit', [AdminLandingPageController::class, 'edit'])->name('landing-pages.edit');
+        Route::put('/landing-pages/update', [AdminLandingPageController::class, 'update'])->name('landing-pages.update');
+        Route::prefix('admin/landing-pages')->name('landing-pages.')->group(function () {
+            // Sections
+            Route::get('sections/create', [AdminLandingPageController::class, 'createSection'])->name('sections.create');
+            Route::post('sections', [AdminLandingPageController::class, 'storeSection'])->name('sections.store');
+            Route::get('sections/{section}/edit', [AdminLandingPageController::class, 'editSection'])->name('sections.edit');
+            Route::put('sections/{section}', [AdminLandingPageController::class, 'updateSection'])->name('sections.update');
+            Route::delete('sections/{section}', [AdminLandingPageController::class, 'deleteSection'])->name('sections.delete');
+
+            // Features
+            Route::get('features/create', [AdminLandingPageController::class, 'createFeature'])->name('features.create');
+            Route::post('features', [AdminLandingPageController::class, 'storeFeature'])->name('features.store');
+            Route::get('features/{feature}/edit', [AdminLandingPageController::class, 'editFeature'])->name('features.edit');
+            Route::put('features/{feature}', [AdminLandingPageController::class, 'updateFeature'])->name('features.update');
+            Route::delete('features/{feature}', [AdminLandingPageController::class, 'deleteFeature'])->name('features.delete');
+
+            // Stats
+            Route::get('stats/create', [AdminLandingPageController::class, 'createStat'])->name('stats.create');
+            Route::post('stats', [AdminLandingPageController::class, 'storeStat'])->name('stats.store');
+            Route::get('stats/{stat}/edit', [AdminLandingPageController::class, 'editStat'])->name('stats.edit');
+            Route::put('stats/{stat}', [AdminLandingPageController::class, 'updateStat'])->name('stats.update');
+            Route::delete('stats/{stat}', [AdminLandingPageController::class, 'deleteStat'])->name('stats.delete');
         });
     });
 });

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\ProdukLayanan;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\ProdukLayanan;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProdukLayananController extends Controller
 {
@@ -28,14 +29,21 @@ class ProdukLayananController extends Controller
             'hero_subtitle' => 'nullable|string|max:255',
             'deskripsi' => 'required|string',
             'deskripsi_lengkap' => 'required|string',
-            'materi' => 'nullable|array',
-            'manfaat' => 'nullable|array',
-            'persyaratan' => 'nullable|array',
-            'alur_proses' => 'nullable|array',
-            'jalur_pelatihan' => 'nullable|array',
+            'materi.*' => 'nullable|string',
+            'manfaat.*' => 'nullable|string',
+            'persyaratan.*' => 'nullable|string',
+            'alur_proses.*' => 'nullable|string',
+            'jalur_pelatihan.*' => 'nullable|string',
             'gambar_banner' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'status' => 'required|in:aktif,nonaktif'
         ]);
+
+        // Handle array inputs
+        $validated['materi'] = $request->materi ?? [];
+        $validated['manfaat'] = $request->manfaat ?? [];
+        $validated['persyaratan'] = $request->persyaratan ?? [];
+        $validated['alur_proses'] = $request->alur_proses ?? [];
+        $validated['jalur_pelatihan'] = $request->jalur_pelatihan ?? [];
 
         if ($request->hasFile('gambar_banner')) {
             $file = $request->file('gambar_banner');
@@ -45,6 +53,7 @@ class ProdukLayananController extends Controller
         }
 
         $validated['slug'] = Str::slug($validated['nama_produk']);
+        $validated['status'] = $validated['status'] ?? 'aktif';
 
         ProdukLayanan::create($validated);
 
@@ -65,21 +74,28 @@ class ProdukLayananController extends Controller
             'hero_subtitle' => 'nullable|string|max:255',
             'deskripsi' => 'required|string',
             'deskripsi_lengkap' => 'required|string',
-            'materi' => 'nullable|array',
-            'manfaat' => 'nullable|array',
-            'persyaratan' => 'nullable|array',
-            'alur_proses' => 'nullable|array',
-            'jalur_pelatihan' => 'nullable|array',
+            'materi.*' => 'nullable|string',
+            'manfaat.*' => 'nullable|string',
+            'persyaratan.*' => 'nullable|string',
+            'alur_proses.*' => 'nullable|string',
+            'jalur_pelatihan.*' => 'nullable|string',
             'gambar_banner' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'status' => 'required|in:aktif,nonaktif'
         ]);
+
+        // Handle array inputs
+        $validated['materi'] = $request->materi ?? $produkLayanan->materi ?? [];
+        $validated['manfaat'] = $request->manfaat ?? $produkLayanan->manfaat ?? [];
+        $validated['persyaratan'] = $request->persyaratan ?? $produkLayanan->persyaratan ?? [];
+        $validated['alur_proses'] = $request->alur_proses ?? $produkLayanan->alur_proses ?? [];
+        $validated['jalur_pelatihan'] = $request->jalur_pelatihan ?? $produkLayanan->jalur_pelatihan ?? [];
 
         if ($request->hasFile('gambar_banner')) {
             // Delete old image
             if ($produkLayanan->gambar_banner) {
                 Storage::delete('public/banner/' . $produkLayanan->gambar_banner);
             }
-            
+
             $file = $request->file('gambar_banner');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('public/banner', $filename);
@@ -87,6 +103,7 @@ class ProdukLayananController extends Controller
         }
 
         $validated['slug'] = Str::slug($validated['nama_produk']);
+        $validated['status'] = $validated['status'] ?? 'aktif';
 
         $produkLayanan->update($validated);
 
@@ -99,7 +116,7 @@ class ProdukLayananController extends Controller
         if ($produkLayanan->gambar_banner) {
             Storage::delete('public/banner/' . $produkLayanan->gambar_banner);
         }
-        
+
         $produkLayanan->delete();
 
         return redirect()->route('admin.produk-layanan.index')

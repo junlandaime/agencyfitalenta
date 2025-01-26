@@ -15,11 +15,11 @@ class ProdukController extends Controller
             ->where('status', 'aktif')
             ->latest()
             ->paginate(12);
-            
+
         $categories = ProdukCategory::has('produks')
             ->withCount('produks')
             ->get();
-            
+
         return view('front.produk.index', compact('products', 'categories'));
     }
 
@@ -45,11 +45,11 @@ class ProdukController extends Controller
             ->with('layanan')
             ->latest()
             ->paginate(12);
-            
+
         $categories = ProdukCategory::has('produks')
             ->withCount('produks')
             ->get();
-            
+
         return view('front.produk.by-category', compact('products', 'categories', 'category'));
     }
 }

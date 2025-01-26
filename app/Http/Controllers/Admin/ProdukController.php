@@ -15,7 +15,7 @@ class ProdukController extends Controller
         $products = Produk::with(['category', 'layanan'])
             ->latest()
             ->paginate(10);
-            
+
         return view('admin.produk.index', compact('products'));
     }
 
@@ -40,6 +40,13 @@ class ProdukController extends Controller
             'keunggulan.*' => 'string',
             'catatan_produk' => 'nullable|string'
         ]);
+
+        // Set default values for arrays if they're not present
+        $validated['fitur'] = $request->fitur ?? [];
+        $validated['keunggulan'] = $request->keunggulan ?? [];
+
+        // Set default status if not provided
+        $validated['status'] = $validated['status'] ?? 'draft';
 
         Produk::create($validated);
 
